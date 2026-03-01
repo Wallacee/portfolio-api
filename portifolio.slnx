@@ -1,1 +1,3 @@
-<Solution />
+<Solution>
+  <Project Path="portifolio.Domain/portifolio.Domain.csproj" />
+</Solution>
