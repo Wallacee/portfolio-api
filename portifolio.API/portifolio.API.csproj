@@ -17,4 +17,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\portifolio.Domain\portifolio.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

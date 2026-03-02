@@ -1,4 +1,6 @@
-﻿namespace portifolio.Domain.Entities;
+﻿using portifolio.Domain.Exceptions;
+
+namespace portifolio.Domain.Entities;
 
 public class Experience
 {
@@ -22,7 +24,7 @@ public class Experience
         Guid userProfileId)
     {
         if (endDate.HasValue && endDate < startDate)
-            throw new ArgumentException("EndDate cannot be earlier than StartDate");
+            throw new DomainException("EndDate cannot be earlier than StartDate");
 
         Id = Guid.NewGuid();
         Company = company;
@@ -41,7 +43,7 @@ public class Experience
         string description)
     {
         if (endDate.HasValue && endDate < startDate)
-            throw new ArgumentException("EndDate cannot be earlier than StartDate");
+            throw new DomainException("EndDate cannot be earlier than StartDate");
 
         Company = company;
         Role = role;

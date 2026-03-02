@@ -1,4 +1,5 @@
 ﻿using portifolio.Domain.Enums;
+using portifolio.Domain.Exceptions;
 
 namespace portifolio.Domain.Entities;
 
@@ -14,7 +15,7 @@ public class Skill
     public Skill(string name, SkillCategory category, int level)
     {
         if (level < 1 || level > 5)
-            throw new ArgumentException("Level must be between 1 and 5");
+            throw new DomainException("Level must be between 1 and 5");
 
         Id = Guid.NewGuid();
         Name = name;
@@ -25,7 +26,7 @@ public class Skill
     public void UpdateLevel(int level)
     {
         if (level < 1 || level > 5)
-            throw new ArgumentException("Level must be between 1 and 5");
+            throw new DomainException("Level must be between 1 and 5");
 
         Level = level;
     }

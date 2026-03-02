@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="portifolio.API/portifolio.API.csproj" Id="6c876cf4-a1de-429c-8d19-7a69451805b7" />
   <Project Path="portifolio.Domain/portifolio.Domain.csproj" />
+  <Project Path="portifolio.Infrastructure/portifolio.Infrastructure.csproj" Id="d13641b8-5727-4642-a9be-bec4022fed2f" />
 </Solution>

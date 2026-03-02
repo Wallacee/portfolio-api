@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using portifolio.Domain.Exceptions;
+using System.Net;
 using System.Text.Json;
 
 namespace portifolio.API.Middlewares;
@@ -28,15 +29,31 @@ public class ExceptionHandlingMiddleware(
 
     private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
+        HttpStatusCode statusCode;
+        string message;
 
-        if (exception is ArgumentException)
-            statusCode = HttpStatusCode.BadRequest;
+        switch (exception)
+        {
+            case DomainException:
+                statusCode = HttpStatusCode.BadRequest;
+                message = exception.Message;
+                break;
+
+            case ArgumentException:
+                statusCode = HttpStatusCode.BadRequest;
+                message = exception.Message;
+                break;
+
+            default:
+                statusCode = HttpStatusCode.InternalServerError;
+                message = "An unexpected error occurred.";
+                break;
+        }
 
         var response = new ErrorResponse
         {
             StatusCode = (int)statusCode,
-            Message = exception.Message,
+            Message = message,
             Details = _environment.IsDevelopment()
                 ? exception.StackTrace
                 : null
