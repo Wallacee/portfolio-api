@@ -13,7 +13,7 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
         builder.Property(x => x.Name)
             .IsRequired()
             .HasMaxLength(100);
-        
+
         builder.HasIndex(x => x.Name).IsUnique();
 
         builder.Property(x => x.Level)
@@ -22,7 +22,7 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
         builder.Property(x => x.Category)
             .IsRequired()
             .HasConversion<int>();
-        
-        
+
+
     }
 }
