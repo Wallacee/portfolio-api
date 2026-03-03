@@ -1,6 +1,0 @@
-@portifolio.API_HostAddress = http://localhost:5225
-
-GET {{portifolio.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
