@@ -10,7 +10,7 @@ using portfolio.Infrastructure.Persistence;
 
 namespace portfolio.Infrastructure.Migrations
 {
-    [DbContext(typeof(PotfolioDbContext))]
+    [DbContext(typeof(PortfolioDbContext))]
     partial class PotfolioDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

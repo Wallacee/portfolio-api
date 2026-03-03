@@ -1,4 +1,4 @@
-﻿namespace portfolio.Application.DTOs;
+﻿namespace portfolio.Application.DTOs.Project;
 
 public record UpdateProjectDto(
     string Title,

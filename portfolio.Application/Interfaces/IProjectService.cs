@@ -1,4 +1,4 @@
-﻿using portfolio.Application.DTOs;
+﻿using portfolio.Application.DTOs.Project;
 
 namespace portfolio.Application.Interfaces
 {

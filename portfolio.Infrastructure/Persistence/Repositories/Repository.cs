@@ -3,9 +3,9 @@ using portfolio.Domain.Interfaces;
 
 namespace portfolio.Infrastructure.Persistence.Repositories;
 
-public class Repository<T>(PotfolioDbContext context) : IRepository<T> where T : class
+public class Repository<T>(PortfolioDbContext context) : IRepository<T> where T : class
 {
-    protected readonly PotfolioDbContext _context = context;
+    protected readonly PortfolioDbContext _context = context;
     protected readonly DbSet<T> _dbSet = context.Set<T>();
 
     public async Task<T?> GetByIdAsync(Guid id)

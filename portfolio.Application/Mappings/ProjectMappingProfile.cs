@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using portfolio.Application.DTOs;
+using portfolio.Application.DTOs.Project;
 using portfolio.Domain.Entities;
 
 namespace portfolio.Application.Mappings;

@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using portfolio.Application.DTOs;
+using portfolio.Application.DTOs.Project;
 using portfolio.Application.Interfaces;
 using portfolio.Domain.Entities;
 using portfolio.Domain.Interfaces;
 
 namespace portfolio.Application.Services;
 
-public class ProjectService(IRepository<Project> repository, IMapper mapper) : IProjectService
+public class ProjectService(IProjectRepository repository, IMapper mapper) : IProjectService
 {
-    private readonly IRepository<Project> _repository = repository;
+    private readonly IProjectRepository _repository = repository;
 
     private readonly IMapper _mapper = mapper;
 
@@ -23,7 +23,7 @@ public class ProjectService(IRepository<Project> repository, IMapper mapper) : I
     {
 
         var project = _mapper.Map<Project>(dto);
-
+        
         await _repository.AddAsync(project);
 
         return _mapper.Map<ProjectDto>(project);

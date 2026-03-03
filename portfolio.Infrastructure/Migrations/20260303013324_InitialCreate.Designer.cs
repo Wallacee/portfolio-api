@@ -11,7 +11,7 @@ using portfolio.Infrastructure.Persistence;
 
 namespace portfolio.Infrastructure.Migrations
 {
-    [DbContext(typeof(PotfolioDbContext))]
+    [DbContext(typeof(PortfolioDbContext))]
     [Migration("20260303013324_InitialCreate")]
     partial class InitialCreate
     {
