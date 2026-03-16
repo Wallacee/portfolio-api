@@ -9,6 +9,8 @@ public class UserProfile
     public string GithubUrl { get; private set; }
     public string LinkedinUrl { get; private set; }
     public DateTime CreatedAt { get; private set; }
+    public Guid UserId { get; private set; }
+    public User User { get; private set; } = null!;
 
     private UserProfile() { } // EF
 
@@ -17,7 +19,8 @@ public class UserProfile
         string headline,
         string about,
         string githubUrl,
-        string linkedinUrl)
+        string linkedinUrl,
+        Guid userId)
     {
         Id = Guid.NewGuid();
         FullName = fullName;
@@ -26,6 +29,7 @@ public class UserProfile
         GithubUrl = githubUrl;
         LinkedinUrl = linkedinUrl;
         CreatedAt = DateTime.UtcNow;
+        UserId = userId;
     }
 
     public void UpdateProfile(

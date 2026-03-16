@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using portfolio.Application.DTOs.Project;
 using portfolio.Application.Interfaces;
 
 namespace portfolio.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ProjectsController(IProjectService service) : ControllerBase

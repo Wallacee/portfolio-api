@@ -10,5 +10,6 @@ namespace portfolio.Application.Interfaces
 
         Task<ProjectDto> GetByIdAsync(Guid id);
 
+        Task<ProjectDto?> UpdateAsync(UpdateProjectDto dto);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using portfolio.Domain.Interfaces;
+using System.Linq.Expressions;
 
 namespace portfolio.Infrastructure.Persistence.Repositories;
 
@@ -30,5 +31,12 @@ public class Repository<T>(PortfolioDbContext context) : IRepository<T> where T 
     {
         _dbSet.Remove(entity);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<T?> FirstOrDefaultAsync(
+    Expression<Func<T, bool>> predicate)
+    {
+        return await _context.Set<T>()
+            .FirstOrDefaultAsync(predicate);
     }
 }

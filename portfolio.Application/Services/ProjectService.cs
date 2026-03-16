@@ -35,4 +35,23 @@ public class ProjectService(IProjectRepository repository, IMapper mapper) : IPr
 
         return _mapper.Map<ProjectDto>(project);
     }
+
+    public async Task<ProjectDto?> UpdateAsync(UpdateProjectDto dto)
+    {
+        var project = await _repository.GetByIdAsync(dto.Id);
+
+        if (project is null)
+            return null;
+
+        project.Update(
+            dto.Name,
+            dto.Description,
+            dto.RepositoryUrl,
+            dto.DemoUrl
+        );
+
+        await _repository.UpdateAsync(project);
+
+        return _mapper.Map<ProjectDto>(project);
+    }
 }
