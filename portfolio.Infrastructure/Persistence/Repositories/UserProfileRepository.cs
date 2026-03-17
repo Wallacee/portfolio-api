@@ -3,7 +3,7 @@ using portfolio.Domain.Interfaces;
 
 namespace portfolio.Infrastructure.Persistence.Repositories
 {
-    public class UserRepository(PortfolioDbContext context) : Repository<User>(context), IUserRepository
+    public class UserProfileRepository(PortfolioDbContext context) : Repository<UserProfile>(context), IUserProfileRepository
     {
         private readonly PortfolioDbContext _context = context;
     }

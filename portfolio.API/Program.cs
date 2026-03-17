@@ -47,9 +47,13 @@ builder.Services.AddDbContext<PortfolioDbContext>(options =>
     )
 );
 //Injeção de dependência
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 
 builder.Services.AddScoped<IProjectService, ProjectService>();
 
