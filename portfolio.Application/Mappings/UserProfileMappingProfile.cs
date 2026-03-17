@@ -10,7 +10,7 @@ namespace portfolio.Application.Mappings
         {
             CreateMap<UserProfile, UserProfileDto>();
 
-            CreateMap<UserProfileDto, UserProfile>(MemberList.Source).ConstructUsing(dto => new UserProfile(dto.FullName, dto.Headline, dto.About, dto.GithubUrl, dto.LinkedinUrl, dto.UserId));
+            CreateMap<UserProfileDto, UserProfile>(MemberList.Source).ConstructUsing(dto => new UserProfile(dto.FullName, dto.Headline, dto.About, dto.GithubUrl, dto.LinkedinUrl,dto.PhotoUrl, dto.UserId));
         }
         
     }

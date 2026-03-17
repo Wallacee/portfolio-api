@@ -5,6 +5,7 @@ public record UserProfileDto(Guid? Id,
                              string About,
                              string GithubUrl,
                              string LinkedinUrl,
+                             string PhotoUrl,
                              Guid UserId);
 
 

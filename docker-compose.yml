@@ -3,11 +3,11 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16
-    container_name: portifolio_postgres
+    container_name: portfolio_postgres
     restart: always
     environment:
-      POSTGRES_DB: portifolio_db
-      POSTGRES_USER: portifolio_user
+      POSTGRES_DB: portfolio_db
+      POSTGRES_USER: portfolio_user
       POSTGRES_PASSWORD: 123456
     ports:
       - "5432:5432"

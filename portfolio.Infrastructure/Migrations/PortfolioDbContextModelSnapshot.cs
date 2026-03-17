@@ -56,7 +56,7 @@ namespace portfolio.Infrastructure.Migrations
 
                     b.HasIndex("UserProfileId");
 
-                    b.ToTable("Experiences");
+                    b.ToTable("Experiences", (string)null);
                 });
 
             modelBuilder.Entity("portfolio.Domain.Entities.Project", b =>
@@ -101,6 +101,9 @@ namespace portfolio.Infrastructure.Migrations
                     b.Property<int>("Category")
                         .HasColumnType("integer");
 
+                    b.Property<Guid>("ExperienceId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("Level")
                         .HasColumnType("integer");
 
@@ -110,6 +113,8 @@ namespace portfolio.Infrastructure.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ExperienceId");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -151,8 +156,8 @@ namespace portfolio.Infrastructure.Migrations
 
                     b.Property<string>("About")
                         .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("character varying(2000)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -164,18 +169,19 @@ namespace portfolio.Infrastructure.Migrations
 
                     b.Property<string>("GithubUrl")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Headline")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LinkedinUrl")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -185,16 +191,29 @@ namespace portfolio.Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserProfiles");
+                    b.ToTable("UserProfiles", (string)null);
                 });
 
             modelBuilder.Entity("portfolio.Domain.Entities.Experience", b =>
                 {
-                    b.HasOne("portfolio.Domain.Entities.UserProfile", null)
-                        .WithMany()
+                    b.HasOne("portfolio.Domain.Entities.UserProfile", "UserProfile")
+                        .WithMany("Experiences")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("UserProfile");
+                });
+
+            modelBuilder.Entity("portfolio.Domain.Entities.Skill", b =>
+                {
+                    b.HasOne("portfolio.Domain.Entities.Experience", "Experience")
+                        .WithMany("Skills")
+                        .HasForeignKey("ExperienceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Experience");
                 });
 
             modelBuilder.Entity("portfolio.Domain.Entities.UserProfile", b =>
@@ -206,6 +225,16 @@ namespace portfolio.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("portfolio.Domain.Entities.Experience", b =>
+                {
+                    b.Navigation("Skills");
+                });
+
+            modelBuilder.Entity("portfolio.Domain.Entities.UserProfile", b =>
+                {
+                    b.Navigation("Experiences");
                 });
 #pragma warning restore 612, 618
         }

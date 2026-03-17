@@ -8,23 +8,24 @@ public class UserProfileConfiguration : IEntityTypeConfiguration<UserProfile>
 {
     public void Configure(EntityTypeBuilder<UserProfile> builder)
     {
+        builder.ToTable("UserProfiles");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.FullName)
             .IsRequired()
             .HasMaxLength(150);
 
-        builder.Property(x => x.Headline)
-            .IsRequired()
-            .HasMaxLength(200);
-
         builder.Property(x => x.About)
-            .HasMaxLength(2000);
+            .IsRequired()
+            .HasMaxLength(1000);
 
-        builder.Property(x => x.GithubUrl)
-            .HasMaxLength(300);
+        builder.Property(x => x.PhotoUrl)
+            .HasMaxLength(500);
 
-        builder.Property(x => x.LinkedinUrl)
-            .HasMaxLength(300);
+        builder.HasMany(x => x.Experiences)
+            .WithOne(x => x.UserProfile)
+            .HasForeignKey(x => x.UserProfileId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

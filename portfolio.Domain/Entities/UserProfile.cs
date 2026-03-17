@@ -8,9 +8,11 @@ public class UserProfile
     public string About { get; private set; }
     public string GithubUrl { get; private set; }
     public string LinkedinUrl { get; private set; }
-    public DateTime CreatedAt { get; private set; }
+    public string? PhotoUrl { get; private set; }
+    public List<Experience> Experiences { get; private set; } = null!;
     public Guid UserId { get; private set; }
     public User User { get; private set; } = null!;
+    public DateTime CreatedAt { get; private set; }
 
     private UserProfile() { } // EF
 
@@ -20,6 +22,7 @@ public class UserProfile
         string about,
         string githubUrl,
         string linkedinUrl,
+        string? photoUrl,
         Guid userId)
     {
         Id = Guid.NewGuid();
@@ -28,6 +31,7 @@ public class UserProfile
         About = about;
         GithubUrl = githubUrl;
         LinkedinUrl = linkedinUrl;
+        PhotoUrl = photoUrl;
         CreatedAt = DateTime.UtcNow;
         UserId = userId;
     }
@@ -37,11 +41,13 @@ public class UserProfile
         string headline,
         string about,
         string githubUrl,
-        string linkedinUrl)
+        string linkedinUrl,
+        string photoUrl)
     {
         FullName = fullName;
         Headline = headline;
         About = about;
+        PhotoUrl = photoUrl;
         GithubUrl = githubUrl;
         LinkedinUrl = linkedinUrl;
     }

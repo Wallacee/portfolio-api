@@ -10,8 +10,9 @@ public class Experience
     public DateTime StartDate { get; private set; }
     public DateTime? EndDate { get; private set; }
     public string Description { get; private set; }
-
+    public List<Skill> Skills { get; private set; } = null!;
     public Guid UserProfileId { get; private set; }
+    public UserProfile? UserProfile { get; private set; }
 
     private Experience() { }
 
@@ -21,7 +22,8 @@ public class Experience
         DateTime startDate,
         DateTime? endDate,
         string description,
-        Guid userProfileId)
+        Guid userProfileId,
+        List<Skill> skills)
     {
         if (endDate.HasValue && endDate < startDate)
             throw new DomainException("EndDate cannot be earlier than StartDate");
@@ -33,6 +35,7 @@ public class Experience
         EndDate = endDate;
         Description = description;
         UserProfileId = userProfileId;
+        Skills = skills;
     }
 
     public void Update(
@@ -40,7 +43,8 @@ public class Experience
         string role,
         DateTime startDate,
         DateTime? endDate,
-        string description)
+        string description,
+        List<Skill> skills)
     {
         if (endDate.HasValue && endDate < startDate)
             throw new DomainException("EndDate cannot be earlier than StartDate");
@@ -50,5 +54,6 @@ public class Experience
         StartDate = startDate;
         EndDate = endDate;
         Description = description;
+        Skills = skills;
     }
 }

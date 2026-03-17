@@ -8,6 +8,8 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
 {
     public void Configure(EntityTypeBuilder<Experience> builder)
     {
+        builder.ToTable("Experiences");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Company)
@@ -19,16 +21,12 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
             .HasMaxLength(150);
 
         builder.Property(x => x.Description)
+            .IsRequired()
             .HasMaxLength(2000);
 
-        builder.Property(x => x.StartDate)
-            .IsRequired();
-
-        builder.Property(x => x.EndDate);
-
-        builder.HasOne<UserProfile>()
-            .WithMany()
-            .HasForeignKey(x => x.UserProfileId)
+        builder.HasMany(x => x.Skills)
+            .WithOne(x => x.Experience)
+            .HasForeignKey(x => x.ExperienceId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }
